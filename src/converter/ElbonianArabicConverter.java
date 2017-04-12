@@ -34,10 +34,16 @@ public class ElbonianArabicConverter {
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
 
         // TODO check to see if the number is valid, then set it equal to the string
-        FormedElbonian(number);
+
+        try {
+            FormedArabic(number); //throws ValueOutOfBounds exception
+        }
+        catch (NumberFormatException e) {
+                FormedElbonian(number); //throws MalformedNumberException
+        }
+
+        //We only get here if no errors were thrown
         this.number = number;
-        System.out.println(toArabic());
-        //this.number = ToArabic();
     }
 
     //helper functions for ElobianArabicConverter
@@ -46,50 +52,64 @@ public class ElbonianArabicConverter {
 //            Integer.parseInt(S);
 //        catch
 //    }
-    public int toArabic(){
-        int toReturn = 0;
-        for(int i = 0; i < this.number.length(); i++){
-            char c = this.number.charAt(i);
-            switch(c){
-                case 'M':
-                    toReturn+=1000;
-                    break;
-                case 'C':
-                    toReturn+=100;
-                    break;
-                case 'X':
-                    toReturn+=10;
-                    break;
-                case 'I':
-                    toReturn+=1;
-                    break;
-                case 'L':
-                    toReturn+=50;
-                    break;
-                case 'l':
-                    i++;
-                    toReturn += 40;
-                    break;
-                case 'D':
-                    toReturn+=500;
-                    break;
-                case 'd':
-                    toReturn +=400;
-                    i++;
-                    break;
-                case 'V':
-                    toReturn+=5;
-                    break;
-                case 'v':
-                    toReturn +=4;
-                    i++;
-                    break;
+    public int toArabic() {
+        try {
+            return Integer.parseInt(this.number);
+        } catch (NumberFormatException e) {
+
+            int toReturn = 0;
+            for (int i = 0; i < this.number.length(); i++) {
+                char c = this.number.charAt(i);
+                switch (c) {
+                    case 'M':
+                        toReturn += 1000;
+                        break;
+                    case 'C':
+                        toReturn += 100;
+                        break;
+                    case 'X':
+                        toReturn += 10;
+                        break;
+                    case 'I':
+                        toReturn += 1;
+                        break;
+                    case 'L':
+                        toReturn += 50;
+                        break;
+                    case 'l':
+                        i++;
+                        toReturn += 40;
+                        break;
+                    case 'D':
+                        toReturn += 500;
+                        break;
+                    case 'd':
+                        toReturn += 400;
+                        i++;
+                        break;
+                    case 'V':
+                        toReturn += 5;
+                        break;
+                    case 'v':
+                        toReturn += 4;
+                        i++;
+                        break;
+                }
             }
+            return toReturn;
         }
-        return toReturn;
     }
 
+    private void FormedArabic(String S) throws ValueOutOfBoundsException, NumberFormatException{
+        int myNum = Integer.parseInt(S);
+        if((0 <= myNum) && (myNum <= 4998)){
+            //It is kosher
+        }
+        else{
+            throw new ValueOutOfBoundsException("Input: " + S + " is not between 0 and 4998");
+        }
 
+    }
     private void FormedElbonian(String S) throws MalformedNumberException{
         S = S.trim();
         String UpS = S.toUpperCase();
@@ -156,7 +176,14 @@ public class ElbonianArabicConverter {
      * @return An Elbonian value
      */
     public String toElbonian() {
-        // TODO Fill in the method's body
+        try{
+            Integer.parseInt(this.number);
+        }
+        catch (NumberFormatException e){
+            //If we get here, this.number must not be an integer.
+            //Hence, it must already be Elbonian!
+            return this.number;
+        }
         return "I";
     }
 

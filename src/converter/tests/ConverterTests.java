@@ -31,6 +31,7 @@ public class ConverterTests {
 
 
     //ToArabic Tests all functioning
+
     @Test
     public void eachLowerCase() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("dDlLvV");
@@ -58,8 +59,8 @@ public class ConverterTests {
     }
     @Test
     public void Zero() throws MalformedNumberException, ValueOutOfBoundsException {
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("MD");
-        assertEquals(converter.toArabic(),1500);
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("");
+        assertEquals(converter.toArabic(),0);
     }
 
     //ToArabic Tests all failing
