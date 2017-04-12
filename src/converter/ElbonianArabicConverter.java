@@ -187,43 +187,62 @@ public class ElbonianArabicConverter {
         }
 
         String toReturn = new String();
-        while(valueStored >= 1000){
+        int c = 0; //so no more than three of each letter
+        while((c < 3) && (valueStored >= 1000)){
+            c++; //Like the language!
             valueStored -= 1000;
             toReturn += "M";
         }
-        while(valueStored >= 500){
+        c=0;
+        while((c < 3) && (valueStored >= 500)){
+            c++;
             valueStored -= 500;
             toReturn += "D";
         }
-        while(valueStored >= 400){
+        while((c < 3) && (valueStored >= 400)){
+            c++;
             valueStored -= 400;
             toReturn += "dD";
         }
-        while(valueStored >= 100){
+        c=0;
+        while((c < 3) && (valueStored >= 100)){
+            c++;
             valueStored -= 100;
             toReturn += "C";
         }
-        while(valueStored >= 50){
+        c=0;
+        while((c < 3) && (valueStored >= 50)){
+            c++;
             valueStored -= 50;
             toReturn += "L";
         }
-        while(valueStored >= 40){
+
+        while((c < 3) && (valueStored >= 40)){
+            c++;
             valueStored -= 40;
             toReturn += "lL";
         }
-        while(valueStored >= 10){
+        c=0;
+        while((c < 3) && (valueStored >= 10)){
+            c++;
             valueStored -= 10;
             toReturn += "X";
         }
-        while(valueStored >= 5){
+        c=0;
+        while((c < 3) && (valueStored >= 5)){
+            c++;
             valueStored -= 5;
             toReturn += "V";
         }
-        while(valueStored >= 4){
+
+        while((c < 3) && (valueStored >= 4)){
+            c++;
             valueStored -= 4;
             toReturn += "vV";
         }
-        while(valueStored >= 1){
+        c=0;
+        while((c < 3) && (valueStored >= 1)){
+            c++;
             valueStored -= 1;
             toReturn += "I";
         }

@@ -133,6 +133,44 @@ public class ConverterTests {
 //        ElbonianArabicConverter converter = new ElbonianArabicConverter("5000");
 //    }
 
-    // TODO Add more test cases
+    //toElbonian tests
+        //Positive
+            //Create an Elbonian without errors
+            //1000 M
+            //1666 MDCLXVI
+            //4998 MMMDDDCCCLLLXXXVVVIII
+            //0
+            //1 I
+            //999 DdDLlLVvV
+            //MCLV MCLV (number returns itself
+        //Negative
+            //-1
+            //4999
 
+    @Test
+    public void makeElbonian() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("MCV");
+        assertEquals(converter.toElbonian(), "MCV");
+    }
+    @Test
+    public void simpleElbonian() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("1000");
+        assertEquals(converter.toElbonian(), "M");
+    }
+    @Test
+    public void lotsOfSixes() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("1666");
+        assertEquals(converter.toElbonian(), "MDCLXVI");
+    }
+    @Test
+    public void elbonianMax() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("4998");
+        assertEquals(converter.toElbonian(), "MMMDDDCCCLLLXXXVVVIII");
+    }
+   /* @Test
+    public void nullElbonian() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("");
+        assertEquals(converter.toElbonian(), "");
+    }
+*/
 }
