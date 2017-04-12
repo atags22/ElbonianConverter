@@ -176,15 +176,59 @@ public class ElbonianArabicConverter {
      * @return An Elbonian value
      */
     public String toElbonian() {
+        int valueStored;
         try{
-            Integer.parseInt(this.number);
+            valueStored = Integer.parseInt(this.number);
         }
         catch (NumberFormatException e){
             //If we get here, this.number must not be an integer.
             //Hence, it must already be Elbonian!
             return this.number;
         }
-        return "I";
+
+        String toReturn = new String();
+        while(valueStored >= 1000){
+            valueStored -= 1000;
+            toReturn += "M";
+        }
+        while(valueStored >= 500){
+            valueStored -= 500;
+            toReturn += "D";
+        }
+        while(valueStored >= 400){
+            valueStored -= 400;
+            toReturn += "dD";
+        }
+        while(valueStored >= 100){
+            valueStored -= 100;
+            toReturn += "C";
+        }
+        while(valueStored >= 50){
+            valueStored -= 50;
+            toReturn += "L";
+        }
+        while(valueStored >= 40){
+            valueStored -= 40;
+            toReturn += "lL";
+        }
+        while(valueStored >= 10){
+            valueStored -= 10;
+            toReturn += "X";
+        }
+        while(valueStored >= 5){
+            valueStored -= 5;
+            toReturn += "V";
+        }
+        while(valueStored >= 4){
+            valueStored -= 4;
+            toReturn += "vV";
+        }
+        while(valueStored >= 1){
+            valueStored -= 1;
+            toReturn += "I";
+        }
+
+    return toReturn;
     }
 
 }
