@@ -167,10 +167,40 @@ public class ConverterTests {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("4998");
         assertEquals(converter.toElbonian(), "MMMDDDCCCLLLXXXVVVIII");
     }
-   /* @Test
+    @Test
     public void nullElbonian() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("");
         assertEquals(converter.toElbonian(), "");
     }
-*/
+    @Test
+    public void ElbonianMin() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("1");
+        assertEquals(converter.toElbonian(), "I");
+    }
+    @Test
+    public void lotsOfNines() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("999");
+        assertEquals(converter.toElbonian(), "DdDLlLVvV");
+    }
+    @Test
+    public void returnSelf() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("MCLV");
+        assertEquals(converter.toElbonian(), "MCLV");
+    }
+
+    //Negative tests
+
+    @Test (expected = ValueOutOfBoundsException.class)
+    public void testNegative() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("-1");
+        converter.toElbonian();
+    }
+
+    @Test (expected = ValueOutOfBoundsException.class)
+    public void testOverlyPositive() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("4999");
+        converter.toElbonian();
+    }
+
+
 }
